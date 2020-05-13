@@ -12,20 +12,19 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainNetwork {
-    private Retrofit mRetrofit;
     private MainApi mMainApi;
 
-    public static final MainNetwork getInstance() {
+    public static MainNetwork getInstance() {
         return MainNetwork.SingletonHolder.INSTANCE;
     }
 
 
     private MainNetwork() {
-        this.mRetrofit = new Retrofit.Builder().baseUrl(MainApi.BASE_URL).client(this.getDefaultClient()).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
-        this.mMainApi = this.mRetrofit.create(MainApi.class);
+        Retrofit mRetrofit = new Retrofit.Builder().baseUrl(MainApi.BASE_URL).client(this.getDefaultClient()).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
+        this.mMainApi = mRetrofit.create(MainApi.class);
     }
 
-    public OkHttpClient getDefaultClient() {
+    private OkHttpClient getDefaultClient() {
         okhttp3.OkHttpClient.Builder builder = (new okhttp3.OkHttpClient.Builder()).connectTimeout(30L, TimeUnit.SECONDS).readTimeout(30L, TimeUnit.SECONDS).writeTimeout(30L, TimeUnit.SECONDS);
         builder.addInterceptor(new LogInterceptor());
         return builder.build();
