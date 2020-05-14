@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RetrofitDemo</string>
+    <string name="design">设计模式</string>
+    <string name="resonse">Resonse:</string>
 </resources>

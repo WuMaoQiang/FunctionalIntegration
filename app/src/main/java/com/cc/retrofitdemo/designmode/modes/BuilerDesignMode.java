@@ -1,4 +1,4 @@
-package com.cc.retrofitdemo.designmode;
+package com.cc.retrofitdemo.designmode.modes;
 
 
 public class BuilerDesignMode {
