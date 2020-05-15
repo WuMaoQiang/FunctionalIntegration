@@ -17,14 +17,20 @@ public class DesignModeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.design_mode);
-        builderDesignMode();
         singletonDesignMode();
+        builderDesignMode();
     }
 
+    /**
+     * 单例模式
+     */
     private void singletonDesignMode() {
         SingletonDesignMode instance = SingletonDesignMode.getInstance();
     }
 
+    /**
+     * 建造者模式
+     */
     private void builderDesignMode() {
         BuilerDesignMode build = new BuilerDesignMode.Builder().buildData("11data").buildUrl("22url").build();
         LogUtils.i(TAG, build.getString());

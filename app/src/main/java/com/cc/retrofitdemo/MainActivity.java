@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         MainViewModel.getInstance().requestData();
-        MainViewModel.getInstance().getData().observe(this, retrofitBean -> changeText(retrofitBean.toString()));
+        MainViewModel.getInstance().getData().observe(this, remoteDataResource -> MainActivity.this.changeText(remoteDataResource.toString()));
     }
 
     private void initView() {
