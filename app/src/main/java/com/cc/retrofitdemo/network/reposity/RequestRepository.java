@@ -1,7 +1,10 @@
 package com.cc.retrofitdemo.network.reposity;
 
 import com.cc.retrofitdemo.network.MainNetwork;
+import com.cc.retrofitdemo.network.bean.ArticleListBean;
 import com.cc.retrofitdemo.network.bean.RetrofitBean;
+import com.cc.retrofitdemo.network.bean.SearchResultBean;
+import com.cc.retrofitdemo.network.bean.UserResponseBean;
 
 import io.reactivex.Observable;
 
@@ -17,6 +20,18 @@ public class RequestRepository {
 
     public Observable<RetrofitBean> getRecommend() {
         return MainNetwork.getInstance().recommend();
+    }
+
+    public Observable<ArticleListBean> getArticleList(String itemId) {
+        return MainNetwork.getInstance().getArticleList(itemId);
+    }
+
+    public Observable<SearchResultBean> doSearch(String itemId, String key) {
+        return MainNetwork.getInstance().doSearch(itemId, key);
+    }
+
+    public Observable<UserResponseBean> userLogin(String name, String password) {
+        return MainNetwork.getInstance().userLogin(name, password);
     }
 
     // ......
