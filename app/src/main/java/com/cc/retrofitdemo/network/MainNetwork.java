@@ -41,8 +41,8 @@ public class MainNetwork {
     }
 
 
-    public Observable<RetrofitBean> recommend() {
-        return this.mMainApi.getRecommend();
+    public Observable<RetrofitBean> getChapters() {
+        return this.mMainApi.getChapters();
     }
 
     public Observable<ArticleListBean> getArticleList(String itemId) {

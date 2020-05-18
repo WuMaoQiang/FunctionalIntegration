@@ -25,7 +25,7 @@ public interface MainApi {
 
 
     @GET("wxarticle/chapters/json")
-    Observable<RetrofitBean> getRecommend();
+    Observable<RetrofitBean> getChapters();
 
     @GET("article/list/{itemId}/json")
     Observable<ArticleListBean> getArticleList(@Path("itemId") String itemId);

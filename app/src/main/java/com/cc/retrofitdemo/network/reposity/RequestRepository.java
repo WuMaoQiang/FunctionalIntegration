@@ -18,8 +18,8 @@ public class RequestRepository {
         private static RequestRepository sInstance = new RequestRepository();
     }
 
-    public Observable<RetrofitBean> getRecommend() {
-        return MainNetwork.getInstance().recommend();
+    public Observable<RetrofitBean> getChapters() {
+        return MainNetwork.getInstance().getChapters();
     }
 
     public Observable<ArticleListBean> getArticleList(String itemId) {

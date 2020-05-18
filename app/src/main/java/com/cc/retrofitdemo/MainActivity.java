@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        MainViewModel.getInstance().getData();
 //        MainViewModel.getInstance().requestArticleList("0");
-        MainViewModel.getInstance().doSearch("0", "单例模式");
-//        MainViewModel.getInstance().userLogin("", "");
+//        MainViewModel.getInstance().doSearch("0", "单例模式");
+        MainViewModel.getInstance().userLogin("", "");
+//        MainViewModel.getInstance().map();
         MainViewModel.getInstance().getData().observe(this, remoteDataResource -> MainActivity.this.changeText(remoteDataResource.toString()));
     }
 
