@@ -7,12 +7,15 @@ import android.widget.TextView;
 
 import com.cc.retrofitdemo.designmode.DesignModeActivity;
 import com.cc.retrofitdemo.network.viewmodel.MainViewModel;
+import com.cc.retrofitdemo.threadpool.ExceptionThread;
+import com.cc.retrofitdemo.threadpool.ThreadPoolManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTv;
     private TextView mDesginMode;
+    private TextView mExceptionThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTv = findViewById(R.id.tv);
         mDesginMode = findViewById(R.id.desgin_mode);
         mDesginMode.setOnClickListener(this);
+        mExceptionThread = findViewById(R.id.exception_thread);
+        mExceptionThread.setOnClickListener(this);
     }
 
     private void changeText(String string) {
@@ -45,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.desgin_mode://设计模式
                 startActivity(new Intent(MainActivity.this, DesignModeActivity.class));
                 break;
-            case 0:
+            case R.id.exception_thread:
+                ThreadPoolManager.getInstance().doSubmit(new ExceptionThread());
                 break;
             default:
         }
