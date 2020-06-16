@@ -2,6 +2,7 @@ package com.cc.retrofitdemo.threadpool;
 
 import com.cc.retrofitdemo.network.utils.LogUtils;
 
+import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -66,7 +67,7 @@ public class ThreadPoolManager {
             }
         } catch (Exception e) {
             //任务失败的原因是什么
-            LogUtils.e(TAG, e.getCause().getMessage());
+            LogUtils.e(TAG, Thread.currentThread().getName()+".."+ Objects.requireNonNull(e.getCause()).getMessage());
         }
     }
 

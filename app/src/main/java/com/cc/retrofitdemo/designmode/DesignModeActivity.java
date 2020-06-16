@@ -11,6 +11,7 @@ import com.cc.retrofitdemo.designmode.modes.SingletonDesignMode;
 import com.cc.retrofitdemo.designmode.modes.proxy.Subject;
 import com.cc.retrofitdemo.network.utils.LogUtils;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;

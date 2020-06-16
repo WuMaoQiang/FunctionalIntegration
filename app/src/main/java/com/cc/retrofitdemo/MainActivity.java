@@ -1,11 +1,16 @@
 package com.cc.retrofitdemo;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.cc.retrofitdemo.designmode.DesignModeActivity;
+import com.cc.retrofitdemo.navigation.NavigationActivity;
+import com.cc.retrofitdemo.navigation.fragments.FragmentMain;
+import com.cc.retrofitdemo.network.bean.RemoteDataResource;
 import com.cc.retrofitdemo.network.viewmodel.MainViewModel;
 import com.cc.retrofitdemo.threadpool.ExceptionThread;
 import com.cc.retrofitdemo.threadpool.ThreadPoolManager;
@@ -16,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTv;
     private TextView mDesginMode;
     private TextView mExceptionThread;
+    private TextView mNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +29,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initView();
 
-//        MainViewModel.getInstance().getData();
+//        MainViewModel.getInstance().requestData();
 //        MainViewModel.getInstance().requestArticleList("0");
 //        MainViewModel.getInstance().doSearch("0", "单例模式");
         MainViewModel.getInstance().userLogin("", "");
 //        MainViewModel.getInstance().map();
-        MainViewModel.getInstance().getData().observe(this, remoteDataResource -> MainActivity.this.changeText(remoteDataResource.toString()));
+        MainViewModel.getInstance().getData().observe(this, MainActivity.this::changeText);
     }
 
     private void initView() {
@@ -37,10 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDesginMode.setOnClickListener(this);
         mExceptionThread = findViewById(R.id.exception_thread);
         mExceptionThread.setOnClickListener(this);
+        mNavigation = findViewById(R.id.navigation);
+        mNavigation.setOnClickListener(this);
+
     }
 
-    private void changeText(String string) {
-        mTv.setText(string);
+    private void changeText(RemoteDataResource remoteDataResource) {
+        mTv.setText(remoteDataResource.toString());
     }
 
     @Override
@@ -52,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.exception_thread:
                 ThreadPoolManager.getInstance().doSubmit(new ExceptionThread());
+                break;
+            case R.id.navigation:
+                startActivity(new Intent(MainActivity.this, NavigationActivity.class));
+                FragmentMain.newInstance("q", "q");
                 break;
             default:
         }
