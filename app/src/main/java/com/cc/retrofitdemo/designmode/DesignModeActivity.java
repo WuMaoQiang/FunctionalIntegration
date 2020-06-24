@@ -1,7 +1,6 @@
 package com.cc.retrofitdemo.designmode;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.cc.retrofitdemo.R;
 import com.cc.retrofitdemo.designmode.modes.BuilerDesignMode;
@@ -9,11 +8,8 @@ import com.cc.retrofitdemo.designmode.modes.proxy.SubjectInvocationHandler;
 import com.cc.retrofitdemo.designmode.modes.proxy.RealSubject;
 import com.cc.retrofitdemo.designmode.modes.SingletonDesignMode;
 import com.cc.retrofitdemo.designmode.modes.proxy.Subject;
-import com.cc.retrofitdemo.network.utils.LogUtils;
+import com.cc.retrofitdemo.utils.LogUtils;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 import androidx.annotation.Nullable;

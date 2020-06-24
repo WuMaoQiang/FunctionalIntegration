@@ -10,6 +10,10 @@ public class ArticleListBean {
      * errorMsg :
      */
 
+    public String harvest(String a) {
+        return a;
+    }
+
     private DataBean data;
     private int errorCode;
     private String errorMsg;

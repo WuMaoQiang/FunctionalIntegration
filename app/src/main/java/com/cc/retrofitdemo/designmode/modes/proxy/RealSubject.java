@@ -1,6 +1,6 @@
 package com.cc.retrofitdemo.designmode.modes.proxy;
 
-import com.cc.retrofitdemo.network.utils.LogUtils;
+import com.cc.retrofitdemo.utils.LogUtils;
 
 public class RealSubject implements Subject {
     private static final String TAG = "RealSubject";

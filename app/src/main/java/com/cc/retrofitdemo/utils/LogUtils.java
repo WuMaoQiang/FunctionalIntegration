@@ -1,4 +1,4 @@
-package com.cc.retrofitdemo.network.utils;
+package com.cc.retrofitdemo.utils;
 
 import android.util.Log;
 

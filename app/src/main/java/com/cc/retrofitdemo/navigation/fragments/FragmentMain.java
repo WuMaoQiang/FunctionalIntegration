@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cc.retrofitdemo.R;
-import com.cc.retrofitdemo.network.utils.LogUtils;
+import com.cc.retrofitdemo.utils.LogUtils;
 
 
 /**

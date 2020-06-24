@@ -1,6 +1,6 @@
 package com.cc.retrofitdemo.designmode.modes.proxy;
 
-import com.cc.retrofitdemo.network.utils.LogUtils;
+import com.cc.retrofitdemo.utils.LogUtils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -4,11 +4,9 @@ import com.cc.retrofitdemo.network.bean.ArticleListBean;
 import com.cc.retrofitdemo.network.bean.RetrofitBean;
 import com.cc.retrofitdemo.network.bean.SearchResultBean;
 import com.cc.retrofitdemo.network.bean.UserResponseBean;
-import com.cc.retrofitdemo.network.utils.LogInterceptor;
+import com.cc.retrofitdemo.utils.LogInterceptor;
 import com.google.gson.Gson;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;

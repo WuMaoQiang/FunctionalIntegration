@@ -3,9 +3,11 @@
     <string name="design">设计模式</string>
     <string name="thread">线程池</string>
     <string name="navigation">Navigation</string>
-    <string name="resonse">Resonse:</string>
+    <string name="player">播放器</string>
+    <string name="response">Response:</string>
 
     <string name="fragment_main">fragment Main</string>
     <string name="fragment_a">fragment A</string>
+    <string name="set_play_media">设置播放数据</string>
 
 </resources>

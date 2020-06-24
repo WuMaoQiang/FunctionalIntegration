@@ -2,7 +2,7 @@ package com.cc.retrofitdemo.crash;
 
 import android.content.Context;
 
-import com.cc.retrofitdemo.network.utils.LogUtils;
+import com.cc.retrofitdemo.utils.LogUtils;
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private static final String TAG = "CrashHandler";

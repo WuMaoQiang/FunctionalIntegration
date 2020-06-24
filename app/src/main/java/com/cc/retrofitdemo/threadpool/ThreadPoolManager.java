@@ -1,6 +1,6 @@
 package com.cc.retrofitdemo.threadpool;
 
-import com.cc.retrofitdemo.network.utils.LogUtils;
+import com.cc.retrofitdemo.utils.LogUtils;
 
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;

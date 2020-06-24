@@ -1,13 +1,12 @@
 package com.cc.retrofitdemo;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.cc.retrofitdemo.designmode.DesignModeActivity;
+import com.cc.retrofitdemo.musicplayer.MusicPlayerActivity;
 import com.cc.retrofitdemo.navigation.NavigationActivity;
 import com.cc.retrofitdemo.navigation.fragments.FragmentMain;
 import com.cc.retrofitdemo.network.bean.RemoteDataResource;
@@ -22,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mDesginMode;
     private TextView mExceptionThread;
     private TextView mNavigation;
+    private TextView mPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mExceptionThread.setOnClickListener(this);
         mNavigation = findViewById(R.id.navigation);
         mNavigation.setOnClickListener(this);
+        mPlayer = findViewById(R.id.player);
+        mPlayer.setOnClickListener(this);
 
     }
 
@@ -65,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.navigation:
                 startActivity(new Intent(MainActivity.this, NavigationActivity.class));
                 FragmentMain.newInstance("q", "q");
+                break;
+            case R.id.player:
+                startActivity(new Intent(MainActivity.this, MusicPlayerActivity.class));
                 break;
             default:
         }

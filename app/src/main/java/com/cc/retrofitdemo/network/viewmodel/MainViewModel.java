@@ -10,7 +10,7 @@ import com.cc.retrofitdemo.network.bean.RetrofitBean;
 import com.cc.retrofitdemo.network.bean.SearchResultBean;
 import com.cc.retrofitdemo.network.bean.UserResponseBean;
 import com.cc.retrofitdemo.network.reposity.RequestRepository;
-import com.cc.retrofitdemo.network.utils.LogUtils;
+import com.cc.retrofitdemo.utils.LogUtils;
 
 import java.util.List;
 import java.util.Set;
