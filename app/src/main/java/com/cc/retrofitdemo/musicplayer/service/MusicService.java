@@ -6,13 +6,17 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.session.PlaybackState;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.text.TextUtils;
 
 import com.cc.retrofitdemo.R;
 import com.cc.retrofitdemo.musicplayer.player.IPlayController;
@@ -31,7 +35,8 @@ import androidx.media.MediaBrowserServiceCompat;
 @SuppressLint("Registered")
 public class MusicService extends MediaBrowserServiceCompat {
     private static final String TAG = "MusicService";
-    private static final String BROWSER_ROOT = "BrowserRoot";
+    private static final String MY_MEDIA_ROOT_ID = "media_root_id";
+    private static final String MY_EMPTY_MEDIA_ROOT_ID = "empty_root_id";
     private IPlayController mCurPlayer;
 
     @Override
@@ -174,14 +179,52 @@ public class MusicService extends MediaBrowserServiceCompat {
     @Nullable
     @Override
     public BrowserRoot onGetRoot(@NonNull String clientPackageName, int clientUid, @Nullable Bundle rootHints) {
-        return new MediaBrowserServiceCompat.BrowserRoot(BROWSER_ROOT, null);
-
+        // (Optional) Control the level of access for the specified package name.
+        // You'll need to write your own logic to do this.
+        if (allowBrowsing(clientPackageName, clientUid)) {
+            // Returns a root ID that clients can use with onLoadChildren() to retrieve
+            // the content hierarchy.
+            return new BrowserRoot(MY_MEDIA_ROOT_ID, null);
+        } else {
+            // Clients can connect, but this BrowserRoot is an empty hierachy
+            // so onLoadChildren returns nothing. This disables the ability to browse for content.
+            //如果包名不对的时候return null;那么mediaController就无法连接了
+            return new BrowserRoot(MY_EMPTY_MEDIA_ROOT_ID, null);
+        }
     }
+
+    private boolean allowBrowsing(String clientPackageName, int clientUid) {
+        boolean isAllow = "com.cc.retrofitdemo".equals(clientPackageName);
+        LogUtils.i(TAG, "clientPackageName =" + isAllow + ".." + clientUid);
+        return isAllow;
+    }
+
 
     @Override
-    public void onLoadChildren(@NonNull String parentId, @NonNull Result<List<MediaBrowserCompat.MediaItem>> result) {
-        result.sendResult(new ArrayList<>());
+    public void onLoadChildren(@NonNull final String parentMediaId,
+                               @NonNull final Result<List<MediaBrowserCompat.MediaItem>> result) {
+        LogUtils.i(TAG, "onLoadChildren =" + parentMediaId + ".." + result);
+        //  Browsing not allowed
+        if (TextUtils.equals(MY_EMPTY_MEDIA_ROOT_ID, parentMediaId)) {
+            result.sendResult(null);
+            return;
+        }
+
+        // Assume for example that the music catalog is already loaded/cached.
+
+        List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
+
+        // Check if this is the root menu:
+        if (MY_MEDIA_ROOT_ID.equals(parentMediaId)) {
+            // Build the MediaItem objects for the top level,
+            // and put them in the mediaItems list...
+        } else {
+            // Examine the passed parentMediaId to see which submenu we're at,
+            // and put the children of that menu in the mediaItems list...
+        }
+        result.sendResult(mediaItems);
     }
+
 
     /**
      * 在android 8.0 禁止启动后台服务。

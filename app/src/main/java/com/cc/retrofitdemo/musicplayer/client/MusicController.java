@@ -12,6 +12,10 @@ import com.cc.retrofitdemo.musicplayer.service.MusicService;
 import com.cc.retrofitdemo.utils.ContextProvider;
 import com.cc.retrofitdemo.utils.LogUtils;
 
+import java.util.List;
+
+import androidx.annotation.NonNull;
+
 
 public class MusicController {
     private static final String TAG = "MusicController";
@@ -39,6 +43,7 @@ public class MusicController {
                 new ComponentName(ContextProvider.getApplication(), MusicService.class),
                 mConnectionCallback, null);
         mediaBrowserCompat.connect();
+
     }
 
     private final MediaBrowserCompat.ConnectionCallback mConnectionCallback =
