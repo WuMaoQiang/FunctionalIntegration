@@ -135,7 +135,7 @@ public class MusicService extends MediaBrowserServiceCompat {
         public void onSkipToNext() {
             super.onSkipToNext();
             LogUtils.i(TAG, "onSkipToNext");
-            mCurPlayer.setPlayableMedia();
+            mCurPlayer.skipToNext();
 
         }
 
@@ -143,7 +143,7 @@ public class MusicService extends MediaBrowserServiceCompat {
         public void onSkipToPrevious() {
             super.onSkipToPrevious();
             LogUtils.i(TAG, "onSkipToPrevious");
-            mCurPlayer.setPlayableMedia();
+            mCurPlayer.skipToPrevious();
 
         }
 
@@ -151,6 +151,7 @@ public class MusicService extends MediaBrowserServiceCompat {
         public void onSeekTo(long pos) {
             super.onSeekTo(pos);
             LogUtils.i(TAG, "onSeekTo");
+            mCurPlayer.seekTo(pos);
 
         }
 

@@ -157,6 +157,17 @@ public class MusicController {
         return mIsPlaying;
     }
 
+    public int getCurrentPosition() {
+        long position = 0;
+        if (mMediaController != null) {
+            if (mMediaController.getPlaybackState() != null) {
+                position = mMediaController.getPlaybackState().getPosition();
+            }
+        }
+        return (int) position;
+    }
+
+
     public interface MusicControllerCallback {
         void onPlayingStateChanged(boolean isPlaying);
     }

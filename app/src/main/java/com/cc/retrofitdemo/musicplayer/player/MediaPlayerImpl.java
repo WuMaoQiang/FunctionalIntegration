@@ -17,6 +17,8 @@ public class MediaPlayerImpl implements IPlayController, MediaPlayer.OnCompletio
     private int mPlayerState;
     private Callback mCallback;
     private String currentMusic;
+    private boolean mSeekToEnd;
+    private long currentPosition;
 
     public MediaPlayerImpl(Context context) {
         mContext = context;
@@ -29,13 +31,9 @@ public class MediaPlayerImpl implements IPlayController, MediaPlayer.OnCompletio
 
     }
 
-    public MediaPlayerImpl getSingleton() {
-
-        return this;
-    }
-
     @Override
     public void setPlayableMedia() {
+        currentPosition = 0;
         mMediaPlayer.reset();
         currentMusic = "菊花臺";
         try {
@@ -56,9 +54,13 @@ public class MediaPlayerImpl implements IPlayController, MediaPlayer.OnCompletio
 
     @Override
     public void start() {
-        mMediaPlayer.start();
+        if (currentPosition == 0) {
+            mMediaPlayer.start();
+        } else {
+            seekTo((int) currentPosition);
+            mMediaPlayer.start();
+        }
         mPlayerState = PlaybackStateCompat.STATE_PLAYING;
-        LogUtils.i(TAG, "start::mPlayerState" + mPlayerState);
         onPlayStatusChange();
     }
 
@@ -69,7 +71,14 @@ public class MediaPlayerImpl implements IPlayController, MediaPlayer.OnCompletio
 
     @Override
     public long getCurrentPosition() {
-        return mMediaPlayer.getCurrentPosition();
+        LogUtils.i(TAG, "getCurrentPosition=" + mMediaPlayer.getCurrentPosition());
+        if (mMediaPlayer != null) {
+            if (mSeekToEnd) {
+                return getDuration();
+            }
+            return mMediaPlayer.getCurrentPosition();
+        }
+        return 0;
     }
 
     @Override
@@ -79,29 +88,40 @@ public class MediaPlayerImpl implements IPlayController, MediaPlayer.OnCompletio
 
     @Override
     public void pause() {
+        currentPosition = getCurrentPosition();
         mMediaPlayer.pause();
         mPlayerState = PlaybackStateCompat.STATE_PAUSED;
         onPlayStatusChange();
     }
 
     @Override
-    public void seekTo(long var1) {
-
+    public void seekTo(long position) {
+        if (mMediaPlayer != null) {
+            long duration = getDuration();
+            if (duration == position) {
+                mSeekToEnd = true;
+            }
+            LogUtils.i(TAG, "seekTo  position" + position);
+            mMediaPlayer.seekTo((int) position);
+        }
     }
 
     @Override
     public long getDuration() {
+        if (null != mMediaPlayer) {
+            return mMediaPlayer.getDuration();
+        }
         return 0;
     }
 
     @Override
     public void skipToNext() {
-
+        this.setPlayableMedia();
     }
 
     @Override
     public void skipToPrevious() {
-
+        this.setPlayableMedia();
     }
 
     @Override
