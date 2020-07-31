@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cc.retrofitdemo">
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".MainApplication"
@@ -22,6 +21,8 @@
         <activity android:name=".designmode.DesignModeActivity" />
         <activity android:name=".navigation.NavigationActivity" />
         <activity android:name=".musicplayer.MusicPlayerActivity" />
+        <activity android:name=".lifecycle.LifeCycleActivity" />
+        <activity android:name=".livedata.LiveDataActivity" />
 
         <service
             android:name=".musicplayer.service.MusicService"
@@ -32,6 +33,8 @@
             </intent-filter>
         </service>
     </application>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
