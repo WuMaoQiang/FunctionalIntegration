@@ -13,12 +13,11 @@ import com.cc.retrofitdemo.navigation.NavigationActivity;
 import com.cc.retrofitdemo.navigation.fragments.FragmentMain;
 import com.cc.retrofitdemo.network.bean.RemoteDataResource;
 import com.cc.retrofitdemo.network.viewmodel.MainViewModel;
+import com.cc.retrofitdemo.reflect.ReflectActivity;
 import com.cc.retrofitdemo.threadpool.ExceptionThread;
 import com.cc.retrofitdemo.threadpool.ThreadPoolManager;
-import com.cc.retrofitdemo.utils.LogUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MediatorLiveData;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTv;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mPlayer;
     private TextView mLifeCycle;
     private TextView mLiveData;
+    private TextView mReflect;
 
 
     @Override
@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLifeCycle.setOnClickListener(this);
         mLiveData = findViewById(R.id.livedata);
         mLiveData.setOnClickListener(this);
+        mReflect= findViewById(R.id.reflect);
+        mReflect.setOnClickListener(this);
 
     }
 
@@ -88,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.livedata:
                 startActivity(new Intent(MainActivity.this, LiveDataActivity.class));
                 break;
-
+            case R.id.reflect:
+                startActivity(new Intent(MainActivity.this, ReflectActivity.class));
             default:
         }
     }

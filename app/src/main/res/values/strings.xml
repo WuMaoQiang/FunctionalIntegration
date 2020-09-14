@@ -13,5 +13,6 @@
     <string name="lifecyclefragment">lifecycleFragment</string>
     <string name="livedata">LiveData</string>
     <string name="MediatorLiveData" >MediatorLiveData</string>
+    <string name="reflect">反射</string>
 
 </resources>

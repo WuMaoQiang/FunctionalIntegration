@@ -23,6 +23,7 @@
         <activity android:name=".musicplayer.MusicPlayerActivity" />
         <activity android:name=".lifecycle.LifeCycleActivity" />
         <activity android:name=".livedata.LiveDataActivity" />
+        <activity android:name=".reflect.ReflectActivity" />
 
         <service
             android:name=".musicplayer.service.MusicService"

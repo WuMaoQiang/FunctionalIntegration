@@ -20,7 +20,8 @@ public class LifeCycleActivity extends AppCompatActivity {
         ActivityLifeCycleObserver observer = new ActivityLifeCycleObserver();
         getLifecycle().addObserver(observer);
         //Fragment的Lifecycle
-        replaceFragment(new LifecycleFragment());
+        LifecycleFragment lifecycleFragment = new LifecycleFragment();
+        replaceFragment(lifecycleFragment);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -34,5 +35,6 @@ public class LifeCycleActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frame_layout, fragment);
         transaction.commit();
+        transaction.addToBackStack("LifecycleFragment");
     }
 }
