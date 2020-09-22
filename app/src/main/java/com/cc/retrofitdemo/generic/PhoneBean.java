@@ -1,8 +1,11 @@
-package com.cc.retrofitdemo.reflect;
+package com.cc.retrofitdemo.generic;
+
+import java.util.Map;
 
 public class PhoneBean {
     private int price;
     private int num;
+    public Map<String, Integer> map;
 
     private int getNum() {
         return num;

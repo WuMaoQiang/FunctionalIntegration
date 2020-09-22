@@ -1,4 +1,4 @@
-package com.cc.retrofitdemo.reflect;
+package com.cc.retrofitdemo.generic;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import com.cc.retrofitdemo.utils.LogUtils;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class ReflectActivity extends AppCompatActivity {
+public class GenericActivity extends AppCompatActivity {
     private static final String TAG = "ReflectActivity";
 
     @Override
@@ -23,7 +25,7 @@ public class ReflectActivity extends AppCompatActivity {
 
         attributeReflect();
         methodReflect();
-
+        getGenericType();
 
     }
 
@@ -42,7 +44,7 @@ public class ReflectActivity extends AppCompatActivity {
             num.setAccessible(true);
             num.set(o, 3);
 
-            Method getTotal = Class.forName("com.cc.retrofitdemo.reflect.PhoneBean").getDeclaredMethod("getTotal");
+            Method getTotal = Class.forName("com.cc.retrofitdemo.generic.PhoneBean").getDeclaredMethod("getTotal");
             getTotal.setAccessible(true);
             LogUtils.i(TAG, "attributeReflect==" + getTotal.invoke(o));
         } catch (Exception e) {
@@ -64,11 +66,31 @@ public class ReflectActivity extends AppCompatActivity {
             setPrice.setAccessible(true);
             setPrice.invoke(o, 200, 5);
 
-            Method getTotal = Class.forName("com.cc.retrofitdemo.reflect.PhoneBean").getDeclaredMethod("getTotal");
+            Method getTotal = Class.forName("com.cc.retrofitdemo.generic.PhoneBean").getDeclaredMethod("getTotal");
             getTotal.setAccessible(true);
             LogUtils.i(TAG, "methodReflect==" + getTotal.invoke(o));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 反射获取获取泛型类型
+     */
+    public void getGenericType() {
+        try {
+            // 返回使用该Class对象创建的实例
+            Field map = PhoneBean.class.getDeclaredField("map");
+            Class<?> type = map.getType();
+            LogUtils.i(TAG, "getType==" + type);
+            ParameterizedType type2 = (ParameterizedType) map.getGenericType();
+            LogUtils.i(TAG, "getGenericType==" + Arrays.toString(type2.getActualTypeArguments()));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
