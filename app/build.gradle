@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
@@ -52,6 +53,6 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
 }

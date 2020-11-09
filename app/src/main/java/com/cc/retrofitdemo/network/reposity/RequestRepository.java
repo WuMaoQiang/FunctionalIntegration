@@ -5,6 +5,7 @@ import com.cc.retrofitdemo.network.bean.ArticleListBean;
 import com.cc.retrofitdemo.network.bean.RetrofitBean;
 import com.cc.retrofitdemo.network.bean.SearchResultBean;
 import com.cc.retrofitdemo.network.bean.UserResponseBean;
+import com.cc.retrofitdemo.networkkotlin.MainNetWorkKotlin;
 
 import io.reactivex.Observable;
 
@@ -31,7 +32,7 @@ public class RequestRepository {
     }
 
     public Observable<UserResponseBean> userLogin(String name, String password) {
-        return MainNetwork.getInstance().userLogin(name, password);
+        return MainNetWorkKotlin.INSTANCE.userLogin(name, password);
     }
 
     // ......

@@ -3,9 +3,12 @@ package com.cc.retrofitdemo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cc.retrofitdemo.designmode.DesignModeActivity;
+import com.cc.retrofitdemo.generic.GenericActivity;
 import com.cc.retrofitdemo.lifecycle.LifeCycleActivity;
 import com.cc.retrofitdemo.livedata.LiveDataActivity;
 import com.cc.retrofitdemo.musicplayer.MusicPlayerActivity;
@@ -13,11 +16,11 @@ import com.cc.retrofitdemo.navigation.NavigationActivity;
 import com.cc.retrofitdemo.navigation.fragments.FragmentMain;
 import com.cc.retrofitdemo.network.bean.RemoteDataResource;
 import com.cc.retrofitdemo.network.viewmodel.MainViewModel;
-import com.cc.retrofitdemo.generic.GenericActivity;
 import com.cc.retrofitdemo.threadpool.ExceptionThread;
 import com.cc.retrofitdemo.threadpool.ThreadPoolManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTv;
@@ -34,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
 
 //        MainViewModel.getInstance().requestData();
 //        MainViewModel.getInstance().requestArticleList("0");
@@ -42,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MainViewModel.getInstance().userLogin("", "");
 //        MainViewModel.getInstance().map();
         MainViewModel.getInstance().getData().observe(this, MainActivity.this::changeText);
+        initView();
     }
+
 
     private void initView() {
         mTv = findViewById(R.id.tv);
@@ -95,4 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
         }
     }
+
+
 }
